@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="playGame('heads')">Heads</button>
+  <button onclick="playGame('tails')">Tails</button>
+  <button onclick="resetScore()">Reset Score</button>
+
+  <p id="result"></p>
+  <p id="score">
+    <script>
+    
+    let score = JSON.parse(localStorage.getItem('score')) || { wins: 0, losses: 0 };
+
+    
+    document.getElementById('score').innerText = `Wins: ${score.wins}, Losses: ${score.losses}`;
+
+    
+    function playGame(guess) {
+      const randomNumber = Math.random();
+      const result = randomNumber < 0.5 ? 'heads' : 'tails';
+
+      let message;
+      if (guess === result) {
+        message = 'You win!';
+        score.wins++;
+      } else {
+        message = 'You lose!';
+        score.losses++;
+      }
+
+      
+      document.getElementById('result').innerText = `You guessed ${guess}, coin flip: ${result}. ${message}`;
+      document.getElementById('score').innerText = `Wins: ${score.wins}, Losses: ${score.losses}`;
+
+    
+      localStorage.setItem('score', JSON.stringify(score));
+    }
+     function resetScore() {
+      score = { wins: 0, losses: 0 };
+      localStorage.setItem('score', JSON.stringify(score));
+      document.getElementById('score').innerText = `Wins: ${score.wins}, Losses: ${score.losses}`;
+      document.getElementById('result').innerText = 'Score reset!';
+    }
+  </script>
+</body>
+</html>
