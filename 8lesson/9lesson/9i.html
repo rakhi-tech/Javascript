@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="showQuantity()">Show Quantity</button>
+  <button onclick="updateCart(1)">Add to Cart</button>
+  <button onclick="updateCart(2)">+2</button>
+  <button onclick="updateCart(3)">+3</button>
+  <button onclick="updateCart(4)">+4</button>
+  <button onclick="updateCart(5)">+5</button>
+  <button onclick="updateCart(-1)">Remove from Cart</button>
+  <button onclick="updateCart(-2)">-2</button>
+  <button onclick="updateCart(-3)">-3</button>
+
+  <p id="cart"></p>
+
+  <script>
+    let cartQuantity = 0;
+
+    
+    document.getElementById('cart').innerText = `Cart quantity: ${cartQuantity}`;
+
+    function showQuantity() {
+      document.getElementById('cart').innerText = `Cart quantity: ${cartQuantity}`;
+    }
+
+    function updateCart(amount) {
+      cartQuantity += amount;
+
+      if (cartQuantity < 0) {
+        cartQuantity = 0; 
+        }
+
+      document.getElementById('cart').innerText = `Cart quantity: ${cartQuantity}`;
+    }
+  </script>
+</body>
+</html>
